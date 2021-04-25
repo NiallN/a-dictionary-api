@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+	<title>Dictionary API</title>
+	<meta charset="UTF-8">
+	<meta name="author" content="Niall Nolan">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<header>
+	<div id="Top of Page" class="section">
+		<h1>Welcome to my Dictionary Web Application!</h1>
+		<h2>Author: Niall Nolan</h2>
+	</div>
+</header>
+<body>
+	<p>This web application allows you to enter a search word.
+		<br>It will access Google's dictionary API and POST your word to it.
+		<br>It will then return the API query results.
+		<br><br>
+	</p>
+	
+	<div id="Dictionary" class="section">
+		<form method="POST">
+			<input type="text" class="form-control" id="user_word_box" style="height:50px; width:500px; border-style: solid; font-size: 14pt;" placeholder="Type your word to be searched here..." name="user_word">
+			<button type="submit" class="search_button">Search</button>
+			<br><br>
+		</form>
+	</div>
+	
+	<div id="results" class="section">
+		<h1>Dictionary Search Results:</h1>
+		<table id="Results table" class="table-striped">
+				{% for key, value in results %}
+                  <tr>
+					<td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                  </tr>
+                {% endfor %}
+        </table>
+	</div>
+
+	<div id="errors" class="section">
+		<table id="errors table" class="table-striped">
+			{% for error in errors %}
+			  <tr>
+				<td>{{ error }}</td>
+			  </tr>
+			{% endfor %}
+        </table>
+	</div>
+
+</body>
+</html>
